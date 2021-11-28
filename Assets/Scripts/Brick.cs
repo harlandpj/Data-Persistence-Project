@@ -36,7 +36,14 @@ public class Brick : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         onDestroyed.Invoke(PointValue);
-        
+        GetComponent<AudioSource>().Play();
+
+        // check if ball collided with it
+        if (other.gameObject.tag == "Ball")
+        {
+            GetComponent<ParticleSystem>().Play();
+        }
+
         //slight delay to be sure the ball have time to bounce
         Destroy(gameObject, 0.2f);
     }
